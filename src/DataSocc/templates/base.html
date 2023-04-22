@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataSocc</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"0>
+</head>
+    <body>
+        <header>
+            <a href="{% url 'index'%}">
+                <img src="{% static 'images/Logo_DataSocc.png' %}" alt="Logo_DataSocc" width="50">
+                <h1> DataSocc </h1>
+            </a>
+            <div>
+                <h6> Nous sommes le {{ date|date:"d F Y" }}</h6>
+                <h6> Il est actuellement {{ date|date:"H\:i" }}</h6>
+            </div>
+        </header>
+        <main>
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+        <footer>
+            <form>
+                <legend>
+                    <h4>Contact</h4>
+                </legend>
+                <textarea rows="3" cols="30" placeholder="Ecrivez-nous"></textarea> <br>
+                <label for="email">Email</label>
+                <input id="email" type="email"> <br>
+                <button>Contact</button>
+            </form>
+        </footer>
+    </body>
+</html>

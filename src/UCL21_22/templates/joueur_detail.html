@@ -1,0 +1,10 @@
+{% extends 'UCL21_22.html' %}
+
+{% block content %}
+    <h1>Liste des Joueurs</h1>
+    <ul>
+        {% for joueur in joueurs %}
+            <li><a href="{% url 'joueur' joueur.id %}">{{ joueur.nom_joueur }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
