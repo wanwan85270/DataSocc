@@ -1,7 +1,8 @@
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import csv
 from .models import modelUCL
+
 
 
 
@@ -62,14 +63,13 @@ def BDDUCL21_22(request):
 
 def UCL21_22(request):
     date = datetime.today()
-    return render(request, "UCL21_22.html", context={"date": date, });
+    joueurs = modelUCL.objects.all()
+    context = {"date": date, "joueurs": joueurs}
+    return render(request, "UCL21_22.html", context=context)
 
 def joueur_detail(request):
-    joueurs = modelUCL.objects.all()
-    context = {'joueurs': joueurs}
-    return render(request, 'joueur_detail.html', context)
-
-def joueur(request, joueur_id):
-    joueur = modelUCL.objects.get(id=joueur_id)
-    context = {'joueur': joueur}
-    return render(request, 'joueur_detail.html', context)
+    date = datetime.today()
+    joueur_id = request.GET.get("joueur")
+    joueur = get_object_or_404(modelUCL, pk=joueur_id)
+    context = {"date": date, "joueur": joueur}
+    return render(request, "joueur_detail.html", context=context)

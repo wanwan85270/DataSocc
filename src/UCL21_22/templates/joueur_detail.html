@@ -1,10 +1,13 @@
-{% extends 'UCL21_22.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1>Liste des Joueurs</h1>
-    <ul>
-        {% for joueur in joueurs %}
-            <li><a href="{% url 'joueur' joueur.id %}">{{ joueur.nom_joueur }}</a></li>
-        {% endfor %}
-    </ul>
+
+<h2>{{ joueur.nom_joueur }}</h2>
+<p>Club: {{ joueur.club }}</p>
+<p>Position: {{ joueur.position }}</p>
+<p>Minutes jouées: {{ joueur.minutes_jouées }}</p>
+<p>Matchs joués: {{ joueur.match_joués }}</p>
+<p>Buts: {{ joueur.buts }}</p>
+<p>Passes décisives: {{ joueur.passes_décisives }}</p>
+
 {% endblock %}

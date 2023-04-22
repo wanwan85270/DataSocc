@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-            <h1>UCL 21 22</h1>
+<h1>UCL 21 22</h1>
 
+<form method="GET" action="{% url 'joueur_detail' %}">
+    <select name="joueur">
+      {% for joueur in joueurs %}
+        <option value="{{ joueur.id }}">{{ joueur.nom_joueur }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="Afficher les statistiques">
+</form>
+
+
+  
 {% endblock %}
