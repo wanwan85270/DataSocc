@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import UCL21_22, joueur_detail
+from .views import UCL21_22
 
 urlpatterns = [
     path('', UCL21_22, name="UCL21_22"),
-    path('joueur_detail/', joueur_detail, name="joueur_detail")
+    path('joueur_detail/', UCL21_22, name="joueur_detail")
 ]

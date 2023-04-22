@@ -63,13 +63,13 @@ def BDDUCL21_22(request):
 
 def UCL21_22(request):
     date = datetime.today()
-    joueurs = modelUCL.objects.all()
-    context = {"date": date, "joueurs": joueurs}
-    return render(request, "UCL21_22.html", context=context)
-
-def joueur_detail(request):
-    date = datetime.today()
     joueur_id = request.GET.get("joueur")
-    joueur = get_object_or_404(modelUCL, pk=joueur_id)
-    context = {"date": date, "joueur": joueur}
-    return render(request, "joueur_detail.html", context=context)
+    if joueur_id:
+        joueur = get_object_or_404(modelUCL, pk=joueur_id)
+        context = {"date": date, "joueur": joueur}
+        template_name = "joueur_detail.html"
+    else:
+        joueurs = modelUCL.objects.all()
+        context = {"date": date, "joueurs": joueurs}
+        template_name = "UCL21_22.html"
+    return render(request, template_name, context=context)
