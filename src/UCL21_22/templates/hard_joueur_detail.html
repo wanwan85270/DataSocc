@@ -1,0 +1,64 @@
+<div id="infos">
+    <h2>{{ joueur.nom_joueur }}</h2>
+    <p>Club: {{ joueur.club }}</p>
+    <p>Position: {{ joueur.position }}</p>
+    <div id="statistique">
+        {% if joueur.position == "Gardien" %}
+            <h6>
+                <p>Minutes jouées: {{ joueur.minutes_jouées }}</p>
+                <p>Matchs joués: {{ joueur.match_joués }}</p>
+                <p>Buts: {{ joueur.buts }}</p>
+                <p>Passes décisives: {{ joueur.passes_décisives }}</p>
+                <p>Distance parcourue (km): {{ joueur.distance_parcourue_km }}</p>
+                <p>Pourcentage de passes réussies: {{ joueur.pourcent_passes_réussies }}</p>
+                <p>Passes tentées: {{ joueur.passes_tentées }}</p>
+                <p>Passes réussies: {{ joueur.passes_réussies }}</p>
+                <p>Carton jaune: {{ joueur.carton_jaune }}</p>
+                <p>Carton rouge: {{ joueur.carton_rouge }}</p>
+                <p>Coups francs tirés: {{ joueur.coup_franc_tirés }}</p>
+                <p>Tirs sauvés: {{ joueur.tirs_sauvés }}</p>
+                <p>Buts concédés: {{ joueur.buts_concédés }}</p>
+                <p>Pénalty sauvé: {{ joueur.penalty_sauvé }}</p>
+                <p>Nombre de cleansheets: {{ joueur.cleansheets }}</p>    
+            </h6>
+        {% else %}
+            <h6>
+                <p>Minutes jouées: {{ joueur.minutes_jouées }}</p>
+                <p>Matchs joués: {{ joueur.match_joués }}</p>
+                <p>Buts: {{ joueur.buts }}</p>
+                <p>Passes décisives: {{ joueur.passes_décisives }}</p>
+                <p>Distance parcourue (km): {{ joueur.distance_parcourue_km }}</p>
+                <p>Corner tiré: {{ joueur.corner_tiré }}</p>
+                <p>Hors-jeu: {{ joueur.hors_jeu }}</p>
+                <p>Dribbles: {{ joueur.dribbles }}</p>
+                <p>Total tir: {{ joueur.total_tir }}</p>
+                <p>Tir cadré: {{ joueur.tir_cadré }}</p>
+                <p>Tir non cadré: {{ joueur.tir_non_cadré }}</p>
+                <p>Tir bloqué: {{ joueur.tir_bloqué }}</p>
+                <p>Ballons récupérés: {{ joueur.ballons_récupérés }}</p>
+                <p>Tacles: {{ joueur.tacles }}</p>
+                <p>Tacles réussis: {{ joueur.tacles_réussi }}</p>
+                <p>Tacles loupés: {{ joueur.tacles_loupé }}</p>
+                <p>Joueur éliminé: {{ joueur.joueur_éliminé }}</p>
+                <p>Fautes commises: {{ joueur.fautes_commmies }}</p>
+                <p>Fautes subies: {{ joueur.fautes_subies }}</p>
+                <p>Carton jaune: {{ joueur.carton_jaune }}</p>
+                <p>Carton rouge: {{ joueur.carton_rouge }}</p>
+                <p>Pourcentage de passes réussies: {{ joueur.pourcent_passes_réussies }}</p>
+                <p>Passes tentées: {{ joueur.passes_tentées }}</p>
+                <p>Passes réussies: {{ joueur.passes_réussies }}</p>
+                <p>Pourcentage de transversales réussies: {{ joueur.pourcent_transversales_réussies }}</p>
+                <p>Transversales tentées: {{ joueur.transversales_tentées }}</p>
+                <p>Transversales réussies: {{ joueur.transversales_réussies }}</p>
+                <p>Coups francs tirés: {{ joueur.coup_franc_tirés }}</p>
+                <p>But du pied droit: {{ joueur.but_du_pied_droit }}</p>
+                <p>But du pied gauche: {{ joueur.but_du_pied_gauche }}</p>
+                <p>But de la tête: {{ joueur.but_de_la_tête }}</p>
+                <p>Buts autres façons: {{ joueur.but_autres_façons }}</p>
+                <p>Buts intérieur surface: {{ joueur.but_intérieur_surface }}</p>
+                <p>Buts dehors surface: {{ joueur.but_dehors_surface }}</p>
+                <p>Pénaltys: {{ joueur.penaltys }}</p>
+            </h6>
+        {% endif %}
+    </div>
+</div>

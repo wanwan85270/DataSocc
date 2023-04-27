@@ -1,36 +1,34 @@
-{% extends 'base.html' %}
 
-{% block content %}
-<h1>UCL 21 22</h1>
-
-<form id="joueur-form">
+<div id="joueur-formulaire">
+    <form id="joueur-form">
     <select name="joueur">
+        <option value="" selected>--- Sélectionnez un joueur ---</option>
         {% for joueur in joueurs %}
         <option value="{{ joueur.id }}">{{ joueur.nom_joueur }}</option>
         {% endfor %}
     </select>
     <input type="submit" value="Afficher les statistiques">
-</form>
+    </form>
+</div>
 
-<div id="joueur-details"></div>
+<div id="list_joueur"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(function () {
         $('#joueur-form').submit(function (e) {
             e.preventDefault();
-            var url = '{% url "joueur_detail" %}';
-            var joueur_id = $('select[name="joueur"]').val();
+            var url = '{% url "joueur_stats" %}';
+            var joueur = $('select[name="joueur"]').val();
             $.ajax({
                 url: url,
-                data: {'joueur': joueur_id},
+                data: {'joueur': joueur},
                 dataType: 'html',
                 success: function (data) {
-                    $('#joueur-details').html(data);
+                    $('#list_joueur').html(data);
                 }
             });
         });
     });
 </script>
 
-{% endblock %}

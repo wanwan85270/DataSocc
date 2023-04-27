@@ -1,0 +1,67 @@
+<form id="stats-form">
+  <label for="stats">Statistiques :</label>
+  <select name="stats" id="stats" multiple style="height: 200px;" required>
+    <option value="minutes_jouées">Minutes jouées</option>
+    <option value="match_joués">Matchs joués</option>
+    <option value="buts">Buts</option>
+    <option value="passes_décisives">Passes décisives</option>
+    <option value="distance_parcourue_km">Distance parcourue (km)</option>
+    <option value="corner_tiré">Corner tiré</option>
+    <option value="hors_jeu">Hors-jeu</option>
+    <option value="dribbles">Dribbles</option>
+    <option value="total_tir">Total de tirs</option>
+    <option value="tir_cadré">Tirs cadrés</option>
+    <option value="tir_non_cadré">Tirs non cadrés</option>
+    <option value="tir_bloqué">Tirs bloqués</option>
+    <option value="ballons_récupérés">Ballons récupérés</option>
+    <option value="tacles">Tacles</option>
+    <option value="tacles_réussi">Tacles réussis</option>
+    <option value="tacles_loupé">Tacles loupés</option>
+    <option value="joueur_éliminé">Joueurs éliminés</option>
+    <option value="fautes_commmies">Fautes commises</option>
+    <option value="fautes_subies">Fautes subies</option>
+    <option value="carton_jaune">Cartons jaunes</option>
+    <option value="carton_rouge">Cartons rouges</option>
+    <option value="pourcent_passes_réussies">% Passes réussies</option>
+    <option value="passes_tentées">Passes tentées</option>
+    <option value="passes_réussies">Passes réussies</option>
+    <option value="pourcent_transversales_réussies">% Transversales réussies</option>
+    <option value="transversales_tentées">Transversales tentées</option>
+    <option value="transversales_réussies">Transversales réussies</option>
+    <option value="coup_franc_tirés">Coups francs tirés</option>
+    <option value="tirs_sauvés">Tirs sauvés </option>
+    <option value="buts_concédés">Buts concédés</option>
+    <option value="penalty_sauvé">Penalty sauvé</option>
+    <option value="cleansheets">Clean sheets</option>
+    <option value="but_du_pied_droit">Buts du pied droit</option>
+    <option value="but_du_pied_gauche">Buts du pied gauche</option>
+    <option value="but_de_la_tête">Buts de la tête</option>
+    <option value="but_autres_façons">Buts d'une autre façon</option>
+    <option value="but_intérieur_surface">Buts de l'intérieur de la surface</option>
+    <option value="but_dehors_surface">Buts de l'extérieur de la surface</option>
+    <option value="penaltys">Penalty</option>
+  </select>
+  <input type="submit" value="Valider">
+</form>
+
+<div id="list_stats"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(function() {
+    $('#stats-form').submit(function(e) {
+      e.preventDefault();
+      var url = "{% url 'stats_detail' %}";
+      var formData = $(this).serialize(); // Récupère les valeurs sélectionnées
+      var joueur_id = '{{ joueur.id }}';
+      $.ajax({
+        url: url,
+        data: formData + '&joueur_id=' + joueur_id, // Ajoute les valeurs sélectionnées à la requête AJAX
+        dataType: 'html',
+        success: function(data) {
+          $('#list_stats').html(data);
+        }
+      });
+    });
+  });
+</script>

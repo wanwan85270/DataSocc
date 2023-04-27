@@ -46,3 +46,5 @@ class modelUCL(models.Model):
     but_dehors_surface = models.FloatField(default=0.0)
     penaltys = models.FloatField(default=0.0)
 
+    def __str__(self):
+        return self.nom_joueur

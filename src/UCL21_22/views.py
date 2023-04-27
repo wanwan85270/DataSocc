@@ -1,8 +1,10 @@
 from datetime import datetime
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Max
 import csv
 from .models import modelUCL
-
+from matplotlib import pyplot as plt
+import math
 
 
 
@@ -63,13 +65,82 @@ def BDDUCL21_22(request):
 
 def UCL21_22(request):
     date = datetime.today()
-    joueur_id = request.GET.get("joueur")
-    if joueur_id:
-        joueur = get_object_or_404(modelUCL, pk=joueur_id)
-        context = {"date": date, "joueur": joueur}
-        template_name = "joueur_detail.html"
-    else:
-        joueurs = modelUCL.objects.all()
-        context = {"date": date, "joueurs": joueurs}
-        template_name = "UCL21_22.html"
+    clubs = modelUCL.objects.values_list("club", flat=True).distinct()
+    context = {"date": date, "clubs": clubs}
+    template_name = "club_list.html"
     return render(request, template_name, context=context)
+    
+
+def club_joueurs(request):
+    club = request.GET.get('club')
+    print(club)
+    joueurs = modelUCL.objects.filter(club=club)
+    print(joueurs)
+    context = {'joueurs': joueurs}
+    template_name = "joueur_list.html"
+    return render(request, template_name, context=context)
+
+def joueur_stats(request):
+    joueur_id = request.GET.get("joueur")
+    joueur = get_object_or_404(modelUCL, pk=joueur_id)
+    joueur_stats = modelUCL.objects.filter(id=joueur_id)
+    print(joueur_id)
+    print(joueur)
+    print(joueur_stats)
+    context = {"joueur": joueur, "joueur_stats": joueur_stats}
+    template_name = "statistiques_list.html"
+    return render(request, template_name, context=context)
+
+def stats_detail(request):
+    stats = request.GET.getlist('stats')
+    joueur_id = request.GET.get('joueur_id')
+    joueur = get_object_or_404(modelUCL, pk=joueur_id)
+    joueur_stats = []
+    for stat in stats:
+        joueur_stats.append(getattr(joueur, stat))
+    print (stats)
+    print(joueur_id)
+    print(joueur)
+    print(joueur_stats)
+
+    joueur_stats_dict = {}
+    for i in range(len(stats)):
+        joueur_stats_dict[stats[i]] = joueur_stats[i]
+    print(joueur_stats_dict)
+
+    stats_names = list(joueur_stats_dict.keys())
+    stats_values = list(joueur_stats_dict.values())
+    print(stats_names)
+    print(stats_values)
+
+    max_values = []
+    for stat in stats:
+        max_value = modelUCL.objects.aggregate(Max(stat))[stat + '__max']
+        max_values.append(max_value)    
+        print (max_values)
+
+    normalized_stats_values = [val/max_val for val, max_val in zip(stats_values, max_values)]
+
+    angles = [n / float(len(stats_names)) * 2 * math.pi for n in range(len(stats_names))] 
+    print(angles)
+
+    ax = plt.subplot(111, polar=True)
+    ax.set_theta_offset(math.pi / 2)
+    ax.set_theta_direction(-1)
+    plt.xticks(angles, stats_names)
+    ax.plot(angles, normalized_stats_values, linewidth=1, linestyle='solid')
+    ax.fill(angles, normalized_stats_values, 'blue', alpha=0.1)
+
+    plt.ylim(0, 1.0)
+    plt.title(joueur.nom_joueur + " - " + joueur.club)
+    plt.show()
+
+    context = {'joueur': joueur, 'stats': stats, 'joueur_stats_dict': joueur_stats_dict}
+    template_name = 'joueur_detail.html'
+
+    return render(request, template_name, context=context)
+
+
+
+
+

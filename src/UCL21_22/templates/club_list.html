@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="club_list">
+
+<h4>UCL 21 22</h4>
+
+<div id="club-formulaire">
+    <form id="club-form">
+        <select name="club">
+            <option value="" selected>--- Sélectionnez un club ---</option>
+            {% for club in clubs %}
+            <option value="{{ club }}">{{ club }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Afficher les joueurs">
+    </form>
+</div>
+
+<div id="list_club"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function () {
+        $('#club-form').submit(function (e) {
+            e.preventDefault();
+            var url = '{% url "club_joueurs" %}';
+            var club = $('select[name="club"]').val();
+            $.ajax({
+                url: url,
+                data: {'club': club},
+                dataType: 'html',
+                success: function (data) {
+                    $('#list_club').html(data);
+                }
+            });
+        });
+    });
+</script>
+
+</div>
+
+
+
+
+

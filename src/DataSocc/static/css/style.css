@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap', 'https://fonts.googleapis.com/css2?family=Alkatra:wght@500&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@500&display=swap" rel="stylesheet');
 
 html,body {
     height: 100%;
@@ -54,16 +55,31 @@ header h6:first-child {
 }
 
 main {
-height: 100%;
-padding: 0;
-margin: 0;
-display: flex;
-flex-direction: column;
-align-items: center;
-font-size: 1.5rem;
-color: white;
-font-family: 'Alkatra', cursive;;
+  text-align: left;
+  height: 100%;
+  width: 100%;
+  padding-left: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: white;
+  font-family: 'Alkatra', cursive;
 }
+
+#club_list h4 {
+  margin-top: 15px;
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+#infos h2, #infos p, #infos h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
 
 footer {
 display: flex;

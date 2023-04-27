@@ -1,8 +1,126 @@
-<h2>{{ joueur.nom_joueur }}</h2>
-<p>Club: {{ joueur.club }}</p>
-<p>Position: {{ joueur.position }}</p>
-<p>Minutes jouées: {{ joueur.minutes_jouées }}</p>
-<p>Matchs joués: {{ joueur.match_joués }}</p>
-<p>Buts: {{ joueur.buts }}</p>
-<p>Passes décisives: {{ joueur.passes_décisives }}</p>
-
+<div id="infos">
+    <h4>   
+        <p>{{ joueur.nom_joueur }}</p>
+    </h4>
+    <h6>
+        <p>Club: {{ joueur.club }}</p>
+        <p>Position: {{ joueur.position }}</p>
+        {% if 'minutes_jouées' in stats %}
+            <p>Minutes jouées: {{ joueur.minutes_jouées }}</p>
+        {% endif %}
+        {% if 'match_joués' in stats %}
+            <p>Matchs joués: {{ joueur.match_joués }}</p>
+        {% endif %}
+        {% if 'buts' in stats %}
+            <p>Buts: {{ joueur.buts }}</p>
+        {% endif %}
+        {% if 'passes_décisives' in stats %}
+            <p>Passes décisives: {{ joueur.passes_décisives }}</p> 
+        {% endif %}
+        {% if 'distance_parcourue_km' in stats %}
+            <p>Distance parcourue (km): {{ joueur.distance_parcourue_km }}</p>
+        {% endif %}
+        {% if 'corner_tiré' in stats %}
+            <p>Corner tiré: {{ joueur.corner_tiré }}</p>
+        {% endif %}
+        {% if 'hors_jeu' in stats %}
+            <p>Hors-jeu: {{ joueur.hors_jeu }}</p>
+        {% endif %}
+        {% if 'dribbles' in stats %}
+            <p>Dribbles: {{ joueur.dribbles }}</p>
+        {% endif %}
+        {% if 'total_tir' in stats %}
+            <p>Total tirs: {{ joueur.total_tir }}</p>
+        {% endif %}
+        {% if 'tir_cadré' in stats %}
+            <p>Tirs cadrés: {{ joueur.tir_cadré }}</p>
+        {% endif %}
+        {% if 'tir_non_cadré' in stats %}
+            <p>Tirs non cadrés: {{ joueur.tir_non_cadré }}</p>
+        {% endif %}
+        {% if 'tir_bloqué' in stats %}
+            <p>Tirs bloqués: {{ joueur.tir_bloqué }}</p>
+        {% endif %}
+        {% if 'ballons_récupérés' in stats %}
+            <p>Ballons récupérés: {{ joueur.ballons_récupérés }}</p>
+        {% endif %}
+        {% if 'tacles' in stats %}
+            <p>Tacles: {{ joueur.tacles }}</p>
+        {% endif %}
+        {% if 'tacles_réussi' in stats %}
+            <p>Tacles réussis: {{ joueur.tacles_réussi }}</p>
+        {% endif %}
+        {% if 'tacles_loupé' in stats %}
+            <p>Tacles loupés: {{ joueur.tacles_loupé }}</p>
+        {% endif %}
+        {% if 'joueur_éliminé' in stats %}
+            <p>Joueurs éliminés: {{ joueur.joueur_éliminé }}</p>
+        {% endif %}
+        {% if 'fautes_commmies' in stats %}
+            <p>Fautes commises: {{ joueur.fautes_commmies }}</p>
+        {% endif %}
+        {% if 'fautes_subies' in stats %}
+            <p>Fautes subies: {{ joueur.fautes_subies }}</p>
+        {% endif %}
+        {% if 'carton_jaune' in stats %}
+            <p>Cartons jaunes: {{ joueur.carton_jaune }}</p>
+        {% endif %}
+        {% if 'carton_rouge' in stats %}
+            <p>Cartons rouges: {{ joueur.carton_rouge }}</p>
+        {% endif %}
+        {% if 'pourcent_passes_réussies' in stats %}
+            <p>Pourcentage de passes réussies: {{ joueur.pourcent_passes_réussies }}</p>
+        {% endif %}
+        {% if 'passes_tentées' in stats %}
+            <p>Passes tentées: {{ joueur.passes_tentées }}</p>
+        {% endif %}
+        {% if 'passes_réussies' in stats %}
+            <p>Passes réussies: {{ joueur.passes_réussies }}</p>
+        {% endif %}
+        {% if 'pourcent_transversales_réussies' in stats %}
+            <p>Pourcentage de transversales réussies: {{ joueur.pourcent_transversales_réussies }}</p>
+        {% endif %}
+        {% if 'transversales_tentées' in stats %}
+            <p>Transversales tentées: {{ joueur.transversales_tentées }}</p>
+        {% endif %}
+        {% if 'transversales_réussies' in stats %}
+            <p>Transversales réussies: {{ joueur.transversales_réussies }}</p>
+        {% endif %}
+        {% if 'coup_franc_tirés' in stats %}
+            <p>Coups francs tirés: {{ joueur.coup_franc_tirés }}</p>
+        {% endif %}
+        {% if 'tirs_sauvés' in stats %}
+            <p>Tirs sauvés: {{ joueur.tirs_sauvés }}</p>
+        {% endif %}
+        {% if 'buts_concédés' in stats %}
+            <p>Buts concédés: {{ joueur.buts_concédés }}</p>
+        {% endif %}
+        {% if 'penalty_sauvé' in stats %}
+            <p>Penalty sauvé: {{ joueur.penalty_sauvé }}</p>
+        {% endif %}
+        {% if 'cleansheets' in stats %}
+            <p>Cleansheets: {{ joueur.cleansheets }}</p>
+        {% endif %}
+        {% if 'but_du_pied_droit' in stats %}
+            <p>Buts du pied droit: {{ joueur.but_du_pied_droit }}</p>
+        {% endif %}
+        {% if 'but_du_pied_gauche' in stats %}
+            <p>Buts du pied gauche: {{ joueur.but_du_pied_gauche }}</p>
+        {% endif %}
+        {% if 'but_de_la_tête' in stats %}
+            <p>Buts de la tête: {{ joueur.but_de_la_tête }}</p>
+        {% endif %}
+        {% if 'but_autres_façons' in stats %}
+            <p>Buts autres façons: {{ joueur.but_autres_façons }}</p>
+        {% endif %}
+        {% if 'but_intérieur_surface' in stats %}
+            <p>Buts intérieur surface: {{ joueur.but_intérieur_surface }}</p>
+        {% endif %}
+        {% if 'but_dehors_surface' in stats %}
+            <p>Buts en dehors de la surface: {{ joueur.but_dehors_surface }}</p>
+        {% endif %}
+        {% if 'penaltys' in stats %}
+            <p>Penaltys: {{ joueur.penaltys }}</p>
+        {% endif %}
+    </h6>
+</div>
