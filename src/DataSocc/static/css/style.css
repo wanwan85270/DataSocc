@@ -61,25 +61,28 @@ main {
   padding-left: 20px;
   margin: 0;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  flex-direction: column; 
+  justify-content: flex-start; 
   color: white;
   font-family: 'Alkatra', cursive;
 }
 
-#club_list h4 {
+h4 {
   margin-top: 15px;
   margin-bottom: 0;
   font-size: 2rem;
 }
 
-#infos h2, #infos p, #infos h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  color: black;
+.club-list-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
+#club_list, #club_list_B {
+  flex: 1;
+}
 
 footer {
 display: flex;

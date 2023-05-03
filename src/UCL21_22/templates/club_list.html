@@ -1,45 +1,87 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div id="club_list">
-
 <h4>UCL 21 22</h4>
 
-<div id="club-formulaire">
-    <form id="club-form">
-        <select name="club">
-            <option value="" selected>--- Sélectionnez un club ---</option>
-            {% for club in clubs %}
-            <option value="{{ club }}">{{ club }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="Afficher les joueurs">
-    </form>
-</div>
+<main class="club-list-page">
+<div id="club_list">
 
-<div id="list_club"></div>
+    <div id="club-formulaire">
+        <form id="club-form">
+            <select name="club">
+                <option value="" selected>- Sélectionnez le club du j.A -</option>
+                {% for club in clubs %}
+                <option value="{{ club }}">{{ club }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Afficher les joueurs A">
+        </form>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(function () {
-        $('#club-form').submit(function (e) {
-            e.preventDefault();
-            var url = '{% url "club_joueurs" %}';
-            var club = $('select[name="club"]').val();
-            $.ajax({
-                url: url,
-                data: {'club': club},
-                dataType: 'html',
-                success: function (data) {
-                    $('#list_club').html(data);
-                }
+    <div id="list_club"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $('#club-form').submit(function (e) {
+                e.preventDefault();
+                var url = '{% url "club_joueurs" %}';
+                var club = $('select[name="club"]').val();
+                $.ajax({
+                    url: url,
+                    data: {'club': club},
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#list_club').html(data);
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 
 </div>
 
+
+
+<div id="club_list_B">
+
+    <div id="club-formulaire_B">
+        <form id="club-form_B">
+            <select name="club_B">
+                <option value="" selected>- Sélectionnez le club du j.B -</option>
+                {% for club_B in clubs_B %}
+                <option value="{{ club_B }}">{{ club_B }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Afficher les joueurs B">
+        </form>
+    </div>
+
+    <div id="list_club_B"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $('#club-form_B').submit(function (e) {
+                e.preventDefault();
+                var url = '{% url "club_joueurs_B" %}';
+                var club_B = $('select[name="club_B"]').val();
+                $.ajax({
+                    url: url,
+                    data: {'club_B': club_B},
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#list_club_B').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+</div>
+</main>
+
+{% endblock %}
 
 
 

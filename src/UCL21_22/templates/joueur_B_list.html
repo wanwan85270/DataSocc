@@ -1,10 +1,11 @@
-<div id="joueur_list">
 
-    <div id="joueur-formulaire">
-        <form id="joueur-form">
-            <select name="joueur">
-                <option value="" selected>- Sélectionnez le joueur A -</option>
-                {% for joueur in joueurs %}
+<div id="joueur_list_B">
+
+    <div id="joueur-formulaire_B">
+        <form id="joueur-form_B">
+            <select name="joueur_B">
+                <option value="" selected>- Sélectionnez le joueur B -</option>
+                {% for joueur in joueurs_B %}
                 <option value="{{ joueur.id }}">{{ joueur.nom_joueur }}</option>
                 {% endfor %}
             </select>
@@ -12,21 +13,21 @@
         </form>
     </div>
 
-    <div id="list_joueur"></div>
+    <div id="list_joueur_B"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
-            $('#joueur-form').submit(function (e) {
+            $('#joueur-form_B').submit(function (e) {
                 e.preventDefault();
-                var url = '{% url "joueur_stats" %}';
-                var joueur = $('select[name="joueur"]').val();
+                var url = '{% url "joueur_stats_B" %}';
+                var joueur_B = $('select[name="joueur_B"]').val();
                 $.ajax({
                     url: url,
-                    data: {'joueur': joueur},
+                    data: {'joueur_B': joueur_B},
                     dataType: 'html',
                     success: function (data) {
-                        $('#list_joueur').html(data);
+                        $('#list_joueur_B').html(data);
                     }
                 });
             });
@@ -34,3 +35,4 @@
     </script>
 
 </div>
+

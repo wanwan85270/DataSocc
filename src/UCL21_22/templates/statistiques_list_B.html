@@ -1,6 +1,6 @@
-<form id="stats_form">
-  <label for="stats">Statistiques :</label>
-  <select name="stats" id="stats" multiple style="height: 200px;" required>
+<form id="stats_form_B">
+  <label for="stats_B">Statistiques :</label>
+  <select name="stats_B" id="stats_B" multiple style="height: 200px;" required>
     <option value="minutes_jouées">Minutes jouées</option>
     <option value="match_joués">Matchs joués</option>
     <option value="buts">Buts</option>
@@ -44,31 +44,31 @@
   <input type="submit" value="Valider">
 </form>
 
-<div id="list_stats"></div>
+<div id="list_stats_B"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(function() {
-    $('#stats_form').submit(function(e) {
+    $('#stats_form_B').submit(function(e) {
       e.preventDefault();
-      var url = "{% url 'stats_detail' %}";
-      var url_S = "{% url 'stats_detail_S' %}"
+      var url = "{% url 'stats_detail_B' %}";
+      var url_S = "{% url 'stats_detail_S' %}";
       var formData = $(this).serialize(); // Récupère les valeurs sélectionnées
-      var joueur_id = '{{ joueur.id }}';
+      var joueur_id_B = '{{ joueur_B.id }}';
       $.ajax({
         url: url,
-        data: formData + '&joueur_id=' + joueur_id, // Ajoute les valeurs sélectionnées à la requête AJAX
+        data: formData + '&joueur_id_B=' + joueur_id_B, // Ajoute les valeurs sélectionnées à la requête AJAX
         dataType: 'html',
         success: function(data) {
-          $('#list_stats').html(data);
+          $('#list_stats_B').html(data);
         }
       });
       $.ajax({
         url: url_S,
-        data: {'joueur_id_S': joueur_id}, // Ajoute les valeurs sélectionnées à la requête AJAX
+        data: formData + '&joueur_id_B=' + joueur_id_B, // Ajoute les valeurs sélectionnées à la requête AJAX
         dataType: 'html',
         success: function(data) {
-          $('#list_stats').html(data);
+          $('#list_stats_B').html(data);
         }
       });
     });
